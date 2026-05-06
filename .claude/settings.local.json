@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Read(//usr/local/bin/**)",
+      "Read(//c//**)",
+      "Bash(cmd.exe /c \"node --version && npm --version\")",
+      "Bash(cmd.exe /c \"node --version\")",
+      "Bash(cmd.exe /c \"npm --version\")",
+      "Bash(cmd.exe /c \"where node 2>&1\")",
+      "Bash(powershell.exe -Command \"node --version; npm --version\")",
+      "Bash(rm -rf .next)",
+      "Bash(npm run:*)",
+      "Bash(dir /s /b \"C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\app\\\\*.tsx\")",
+      "Bash(cmd /c \"dir /b \\\\\"C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\public\\\\\"\")",
+      "Bash(npx tsc:*)",
+      "Bash(dir 'C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\public\" | findstr /i bulwark' icon favicon 'avif:*)",
+      "Bash(findstr /i \"icon favicon\")",
+      "WebFetch(domain:www.bulwarkdynamics.com)",
+      "Bash(dir \"C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\public\\\\\" /b | findstr /i \"caravel\")",
+      "Bash(node -e ':*)",
+      "Bash(python3 -c ':*)",
+      "Bash(powershell -Command ':*)",
+      "Bash(dir /s /b \"C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\components\\\\CountUp*\")",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(powershell -command \"\\(Get-Item 'C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\public\\\\Video \\(Mission Caravel Docking\\).mp4'\\).Length / 1MB\")",
+      "Bash(ffmpeg -version)",
+      "Bash(dir \"C:\\\\Users\\\\lloyd\\\\Documents\\\\GitHub\\\\bulwark-site\\\\public\\\\*.mp4\")",
+      "Bash(find \"/c/Users/lloyd/Documents/GitHub/bulwark-site/public\" -name \"*.mp4\" -exec ls -lh {} \\\\;)",
+      "Bash(git rm:*)"
+    ]
+  }
+}

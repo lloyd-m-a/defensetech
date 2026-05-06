@@ -1,0 +1,1025 @@
+================================================================================
+BULWARK SITE — HOMEPAGE IMPLEMENTATION GUIDE
+================================================================================
+Appendix: File structure, component code, and wiring instructions.
+Last updated: 2026-04-06
+--------------------------------------------------------------------------------
+
+
+TABLE OF CONTENTS
+-----------------
+ 1.  Project Structure
+ 2.  lib/content.ts
+ 3.  components/LanguageProvider.tsx
+ 4.  app/layout.tsx
+ 5.  app/page.tsx
+ 6.  components/Header.tsx
+ 7.  components/Hero.tsx
+ 8.  components/Mission.tsx
+ 9.  components/Vessel.tsx
+10.  components/About.tsx
+11.  components/JoinTeam.tsx
+12.  components/Footer.tsx
+13.  components/LangToggle.tsx
+14.  How It All Connects
+15.  Running the Project
+
+
+================================================================================
+1. PROJECT STRUCTURE
+================================================================================
+
+your-project/
+├── lib/
+│   └── content.ts                ← all EN + JA copy (single source of truth)
+├── components/
+│   ├── LanguageProvider.tsx      ← language context + useLang() hook
+│   ├── Header.tsx                ← fixed nav, CTA, EN/JA toggle
+│   ├── Hero.tsx                  ← full-viewport hero + stats bar
+│   ├── Mission.tsx               ← text-focused section
+│   ├── Vessel.tsx                ← image placeholder + specs table
+│   ├── About.tsx                 ← two-column about + values
+│   ├── JoinTeam.tsx              ← boxed call-to-action
+│   ├── Footer.tsx                ← link columns + legal bar
+│   └── LangToggle.tsx            ← standalone EN/JA toggle (page bottom)
+└── app/
+    ├── layout.tsx                ← wraps app in <LanguageProvider>
+    ├── page.tsx                  ← assembles all sections in order
+    └── globals.css               ← @import "tailwindcss"
+
+PAGE ORDER (top to bottom):
+  Header → Hero → Mission → Vessel → About → JoinTeam → Footer → LangToggle
+
+HEADER LAYOUT (right side, desktop):
+  [ Join the Team ]  [ EN | JA ]
+
+
+================================================================================
+2. lib/content.ts  (NEW FILE)
+================================================================================
+All English and Japanese copy in one place.
+To change any text on the site, edit only this file.
+To add a language, add a new key and update the Lang type.
+--------------------------------------------------------------------------------
+
+export type Lang = "en" | "ja";
+
+export const content = {
+  en: {
+    nav: {
+      mission: "Mission",
+      vessel:  "Vessel",
+      about:   "About Us",
+      careers: "Careers",
+      cta:     "Join the Team",
+    },
+    hero: {
+      label:     "Defense Technology",
+      headlineA: "Systems built for",
+      headlineB: "critical environments.",
+      sub: "Bulwark Dynamics delivers defense technology, maritime systems, and intelligence infrastructure for government and allied partners operating in complex threat environments.",
+      cta1: "View Capabilities",
+      cta2: "Request Briefing",
+      stats: [
+        { value: "20+",    label: "Years in Service"    },
+        { value: "140+",   label: "Government Partners" },
+        { value: "99.97%", label: "System Uptime"       },
+        { value: "SOC 2",  label: "Type II Certified"   },
+      ],
+    },
+    mission: {
+      number:    "01",
+      label:     "Mission",
+      headline:  "Purpose-built for the most demanding operational requirements.",
+      body1:     "We develop and field advanced technology for the defense and intelligence community, with a focus on systems that perform when and where it matters most — denied environments, contested domains, and high-stakes operational scenarios.",
+      principle: "Reliability is not a specification. It is a precondition.",
+      body2:     "Our team includes former operators, engineers, and intelligence professionals who have served at the highest levels. That background shapes every decision we make — from architecture to deployment.",
+    },
+    vessel: {
+      number:   "02",
+      label:    "Vessel Systems",
+      headline: "Maritime Defense Platform",
+      body: "Our vessel-integrated systems provide hardened command, control, and sensor fusion capabilities for naval and coast guard operations. Designed for contested maritime environments, our platforms support multi-domain awareness and secure interoperability with allied forces.",
+      specs: [
+        { label: "Operating Range", value: "5,000 nm"        },
+        { label: "Displacement",    value: "4,200 t"         },
+        { label: "Crew Capacity",   value: "180"             },
+        { label: "Classification",  value: "NATO RESTRICTED" },
+      ],
+    },
+    about: {
+      number:    "03",
+      label:     "About Us",
+      headlineA: "Built by practitioners.",
+      headlineB: "Trusted by operators.",
+      body1: "Bulwark Dynamics was founded by former defense officials, intelligence officers, and engineers with combined decades of operational experience across the U.S., Japan, and allied nations.",
+      body2: "We operate under formal vetting requirements and hold active clearances. All partnerships are subject to government compliance review and ITAR regulations.",
+      badges: ["ITAR Compliant", "NIST 800-171", "CMMC Level 2", "FedRAMP Ready"],
+      values: [
+        {
+          title: "Mission First",
+          body:  "Every engineering decision is evaluated against mission impact. We build what operators need, not what looks good on a slide.",
+        },
+        {
+          title: "Uncompromising Security",
+          body:  "Security is a foundational requirement, not a feature. Our systems undergo independent audits and adversarial testing before deployment.",
+        },
+        {
+          title: "Earned Trust",
+          body:  "We hold active clearances and operate under the same accountability standards as our partners. Trust is demonstrated through action.",
+        },
+      ],
+    },
+    join: {
+      number:   "04",
+      label:    "Careers",
+      headline: "Join the Team",
+      sub: "We are building the team that protects the next generation of critical infrastructure. We recruit cleared professionals across engineering, intelligence analysis, program management, and field operations.",
+      cta:   "View Open Positions",
+      email: "careers@bulwarkdynamics.com",
+    },
+    footer: {
+      tagline: "Advanced defense technology for the modern threat environment.",
+      columns: [
+        {
+          heading: "Company",
+          links: [
+            { label: "About",      href: "#about" },
+            { label: "Leadership", href: "#"      },
+            { label: "Careers",    href: "#join"  },
+            { label: "Press",      href: "#"      },
+          ],
+        },
+        {
+          heading: "Capabilities",
+          links: [
+            { label: "C2 Systems",       href: "#"       },
+            { label: "ISR Integration",  href: "#"       },
+            { label: "Cyber Defense",    href: "#"       },
+            { label: "Maritime Systems", href: "#vessel" },
+          ],
+        },
+        {
+          heading: "Legal",
+          links: [
+            { label: "Privacy Policy",      href: "#" },
+            { label: "Terms of Use",        href: "#" },
+            { label: "Export Controls",     href: "#" },
+            { label: "Security Disclosure", href: "#" },
+          ],
+        },
+      ],
+      legal: "This site is intended for authorized government and contractor personnel only.",
+    },
+  },
+
+  ja: {
+    nav: {
+      mission: "ミッション",
+      vessel:  "艦船システム",
+      about:   "会社概要",
+      careers: "採用情報",
+      cta:     "チームに参加する",
+    },
+    hero: {
+      label:     "防衛技術",
+      headlineA: "重要な環境のために",
+      headlineB: "構築されたシステム。",
+      sub: "バルワーク・ダイナミクスは、複雑な脅威環境下で活動する政府および同盟国パートナーに、防衛技術、海上システム、情報インフラを提供します。",
+      cta1: "能力を見る",
+      cta2: "ブリーフィングを申請",
+      stats: [
+        { value: "20+",    label: "稼働年数"      },
+        { value: "140+",   label: "政府パートナー" },
+        { value: "99.97%", label: "稼働率"        },
+        { value: "SOC 2",  label: "タイプII認証"  },
+      ],
+    },
+    mission: {
+      number:    "01",
+      label:     "ミッション",
+      headline:  "最も厳しい運用要件のために特別に構築。",
+      body1:     "私たちは、否定された環境、競争領域、高度な作戦シナリオなど、最も重要な場面で機能するシステムに焦点を当て、防衛・情報コミュニティ向けの高度な技術を開発・展開しています。",
+      principle: "信頼性は仕様書ではなく、前提条件です。",
+      body2:     "私たちのチームには、最高レベルで任務を遂行した元オペレーター、エンジニア、情報専門家が含まれています。その経験が、アーキテクチャから展開に至るすべての意思決定を形成しています。",
+    },
+    vessel: {
+      number:   "02",
+      label:    "艦船システム",
+      headline: "海上防衛プラットフォーム",
+      body: "当社の艦船統合システムは、海軍および海上保安庁の運用に対して、堅牢な指揮統制・センサー融合機能を提供します。競争的な海上環境向けに設計された当社プラットフォームは、多領域認識と同盟国との安全な相互運用性を支援します。",
+      specs: [
+        { label: "作戦航続距離", value: "5,000 海里" },
+        { label: "排水量",       value: "4,200 t"   },
+        { label: "乗員定数",     value: "180名"      },
+        { label: "分類",         value: "NATO 制限"  },
+      ],
+    },
+    about: {
+      number:    "03",
+      label:     "会社概要",
+      headlineA: "実務家が構築。",
+      headlineB: "オペレーターが信頼。",
+      body1: "バルワーク・ダイナミクスは、米国、日本、同盟国にわたる数十年の運用経験を持つ元防衛当局者、情報将校、エンジニアによって設立されました。",
+      body2: "当社は正式な審査要件の下で運営し、有効なセキュリティクリアランスを保持しています。すべてのパートナーシップは政府のコンプライアンス審査とITAR規制の対象です。",
+      badges: ["ITAR準拠", "NIST 800-171", "CMMMレベル2", "FedRAMP対応"],
+      values: [
+        {
+          title: "ミッションファースト",
+          body:  "すべての工学的判断は、任務への影響に基づいて評価されます。スライドで映えるものではなく、オペレーターが必要とするものを構築します。",
+        },
+        {
+          title: "妥協なきセキュリティ",
+          body:  "セキュリティは機能ではなく、基本要件です。当社のシステムは展開前に独立した監査と敵対的テストを受けます。",
+        },
+        {
+          title: "獲得された信頼",
+          body:  "当社はパートナーと同じ説明責任基準の下で運営し、有効なクリアランスを保持しています。信頼は行動によって示されます。",
+        },
+      ],
+    },
+    join: {
+      number:   "04",
+      label:    "採用情報",
+      headline: "チームに参加する",
+      sub: "私たちは次世代の重要インフラを守るチームを構築しています。エンジニアリング、情報分析、プログラム管理、フィールド運用にわたるクリアランス保持の専門家を募集しています。",
+      cta:   "求人を見る",
+      email: "careers@bulwarkdynamics.com",
+    },
+    footer: {
+      tagline: "現代の脅威環境に対応した高度な防衛技術。",
+      columns: [
+        {
+          heading: "会社情報",
+          links: [
+            { label: "会社概要",       href: "#about" },
+            { label: "リーダーシップ", href: "#"      },
+            { label: "採用情報",       href: "#join"  },
+            { label: "プレス",         href: "#"      },
+          ],
+        },
+        {
+          heading: "能力",
+          links: [
+            { label: "C2システム",   href: "#"       },
+            { label: "ISR統合",      href: "#"       },
+            { label: "サイバー防衛", href: "#"       },
+            { label: "海上システム", href: "#vessel" },
+          ],
+        },
+        {
+          heading: "法務",
+          links: [
+            { label: "プライバシーポリシー", href: "#" },
+            { label: "利用規約",             href: "#" },
+            { label: "輸出規制",             href: "#" },
+            { label: "セキュリティ開示",     href: "#" },
+          ],
+        },
+      ],
+      legal: "このサイトは、認可された政府および請負業者担当者のみを対象としています。",
+    },
+  },
+} as const;
+
+export type SiteContent = typeof content.en;
+
+
+================================================================================
+3. components/LanguageProvider.tsx  (NEW FILE)
+================================================================================
+React context that holds the active language state.
+Import useLang() in any component to read lang or call setLang().
+Must be "use client". Wrap the app with <LanguageProvider> in layout.tsx.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { createContext, useContext, useState } from "react";
+import type { Lang } from "@/lib/content";
+
+type LangContextValue = { lang: Lang; setLang: (l: Lang) => void };
+
+const LangContext = createContext<LangContextValue>({ lang: "en", setLang: () => {} });
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [lang, setLang] = useState<Lang>("en");
+  return (
+    <LangContext.Provider value={{ lang, setLang }}>
+      {children}
+    </LangContext.Provider>
+  );
+}
+
+export function useLang() {
+  return useContext(LangContext);
+}
+
+
+================================================================================
+4. app/layout.tsx  (REPLACE EXISTING)
+================================================================================
+Root layout. Wraps everything in <LanguageProvider> so every component
+can read and update the active language.
+--------------------------------------------------------------------------------
+
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { LanguageProvider } from "@/components/LanguageProvider";
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin", "latin-ext"] });
+
+export const metadata: Metadata = {
+  title: "Bulwark Dynamics | Defense Technology",
+  description: "Advanced defense technology solutions for the modern threat environment. Reliable systems. Trusted partners.",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} bg-slate-950 text-slate-100 antialiased`}>
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
+    </html>
+  );
+}
+
+
+================================================================================
+5. app/page.tsx  (REPLACE EXISTING)
+================================================================================
+Assembles all sections in order. This is the only file that controls
+the sequence of sections on the page.
+--------------------------------------------------------------------------------
+
+import Header    from "@/components/Header";
+import Hero      from "@/components/Hero";
+import Mission   from "@/components/Mission";
+import Vessel    from "@/components/Vessel";
+import About     from "@/components/About";
+import JoinTeam  from "@/components/JoinTeam";
+import Footer    from "@/components/Footer";
+import LangToggle from "@/components/LangToggle";
+
+export default function Home() {
+  return (
+    <main>
+      <Header />
+      <Hero />
+      <Mission />
+      <Vessel />
+      <About />
+      <JoinTeam />
+      <Footer />
+      <LangToggle />
+    </main>
+  );
+}
+
+
+================================================================================
+6. components/Header.tsx  (REPLACE EXISTING)
+================================================================================
+Fixed top bar. Contains: logo, centered nav links, and on the right side
+a bordered CTA button followed immediately by the EN/JA language toggle.
+
+Desktop right side:  [ Join the Team ]  [ EN | JA ]
+Mobile: hamburger opens a drawer with nav links, CTA, and toggle.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useState } from "react";
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function Header() {
+  const { lang, setLang } = useLang();
+  const t = content[lang].nav;
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.mission, href: "#mission" },
+    { label: t.vessel,  href: "#vessel"  },
+    { label: t.about,   href: "#about"   },
+    { label: t.careers, href: "#join"    },
+  ];
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+
+        {/* Logo */}
+        <a href="#" className="flex items-center gap-3 flex-shrink-0">
+          <div className="w-7 h-7 border-2 border-sky-500 flex items-center justify-center">
+            <div className="w-2.5 h-2.5 bg-sky-500" />
+          </div>
+          <span className="text-xs font-semibold tracking-widest uppercase text-slate-100">
+            Bulwark Dynamics
+          </span>
+        </a>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-7 flex-1 justify-center">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-xs tracking-widest uppercase text-slate-400 hover:text-slate-100 transition-colors duration-150"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Desktop: CTA + lang toggle */}
+        <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+          <a
+            href="#join"
+            className="text-xs tracking-widest uppercase px-4 py-2 border border-sky-700 text-sky-400 hover:bg-sky-700 hover:text-white transition-colors duration-150"
+          >
+            {t.cta}
+          </a>
+          <div className="flex items-center border border-slate-800">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-3 py-1.5 text-xs tracking-widest font-medium transition-colors duration-150 ${
+                lang === "en" ? "bg-slate-800 text-slate-100" : "text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              EN
+            </button>
+            <div className="w-px h-4 bg-slate-800" />
+            <button
+              onClick={() => setLang("ja")}
+              className={`px-3 py-1.5 text-xs tracking-widest font-medium transition-colors duration-150 ${
+                lang === "ja" ? "bg-slate-800 text-slate-100" : "text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              JA
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile hamburger */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-slate-400 hover:text-slate-100 transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile drawer */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-slate-800 bg-slate-950 px-6 py-5 flex flex-col gap-5">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-xs tracking-widest uppercase text-slate-400 hover:text-slate-100 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#join"
+            onClick={() => setMenuOpen(false)}
+            className="text-xs tracking-widest uppercase text-center px-4 py-2.5 border border-sky-700 text-sky-400"
+          >
+            {t.cta}
+          </a>
+          <div className="flex items-center border border-slate-800 self-start">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-3 py-1.5 text-xs tracking-widest font-medium transition-colors duration-150 ${
+                lang === "en" ? "bg-slate-800 text-slate-100" : "text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              EN
+            </button>
+            <div className="w-px h-4 bg-slate-800" />
+            <button
+              onClick={() => setLang("ja")}
+              className={`px-3 py-1.5 text-xs tracking-widest font-medium transition-colors duration-150 ${
+                lang === "ja" ? "bg-slate-800 text-slate-100" : "text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              JA
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+
+================================================================================
+7. components/Hero.tsx  (REPLACE EXISTING)
+================================================================================
+Full-viewport section. Tactical grid background, decorative coordinates,
+two CTA buttons, stats bar pinned to the bottom edge.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function Hero() {
+  const { lang } = useLang();
+  const t = content[lang].hero;
+
+  return (
+    <section className="relative min-h-screen flex flex-col justify-end bg-slate-950 overflow-hidden pt-16">
+      {/* Tactical grid */}
+      <div className="absolute inset-0 opacity-[0.035]" style={{
+        backgroundImage:
+          "linear-gradient(to right, #94a3b8 1px, transparent 1px), " +
+          "linear-gradient(to bottom, #94a3b8 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+      }} />
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-sky-700/50 to-transparent" />
+
+      {/* Decorative coordinates */}
+      <div className="absolute top-24 right-6 md:right-10 hidden sm:block text-right">
+        <p className="text-xs font-mono text-slate-800 leading-loose tracking-wider">
+          35.6762° N<br />139.6503° E<br />ALT 0.0 m
+        </p>
+      </div>
+
+      {/* Main copy */}
+      <div className="relative max-w-7xl mx-auto px-6 pb-0 w-full flex-1 flex flex-col justify-center py-24 md:py-36">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2.5 mb-10 px-3 py-1.5 border border-slate-800 bg-slate-900/60">
+            <span className="w-1.5 h-1.5 bg-sky-500" />
+            <span className="text-xs tracking-widest uppercase text-slate-400 font-medium">
+              {t.label}
+            </span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl tracking-tight leading-[1.08] mb-8">
+            <span className="font-light text-slate-300">{t.headlineA}</span><br />
+            <span className="font-semibold text-white">{t.headlineB}</span>
+          </h1>
+
+          <p className="text-base text-slate-400 leading-relaxed mb-10 max-w-xl">
+            {t.sub}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href="#mission"
+              className="inline-flex items-center justify-center px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white text-xs tracking-widest uppercase font-semibold transition-colors duration-150">
+              {t.cta1}
+            </a>
+            <a href="#join"
+              className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white text-xs tracking-widest uppercase transition-colors duration-150">
+              {t.cta2}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats bar */}
+      <div className="relative border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {t.stats.map((stat) => (
+            <div key={stat.label} className="flex flex-col gap-1">
+              <span className="text-xl md:text-2xl font-semibold text-white tabular-nums">
+                {stat.value}
+              </span>
+              <span className="text-xs text-slate-500 tracking-wide">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+8. components/Mission.tsx  (NEW FILE)
+================================================================================
+Text-focused section. Large headline, two-column body copy, and a
+full-width highlighted principle quote with a left sky-blue border.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function Mission() {
+  const { lang } = useLang();
+  const t = content[lang].mission;
+
+  return (
+    <section id="mission" className="bg-slate-950 border-t border-slate-800 py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center gap-4 mb-14">
+          <span className="text-xs font-mono text-slate-700">{t.number}</span>
+          <div className="w-8 h-px bg-slate-800" />
+          <span className="text-xs tracking-widest uppercase text-sky-500 font-medium">
+            {t.label}
+          </span>
+        </div>
+
+        <h2 className="text-3xl md:text-5xl font-light tracking-tight text-slate-100 leading-tight max-w-3xl mb-14">
+          {t.headline}
+        </h2>
+
+        <div className="border-t border-slate-800 pt-12">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+            <p className="text-sm text-slate-400 leading-loose">{t.body1}</p>
+            <p className="text-sm text-slate-400 leading-loose">{t.body2}</p>
+          </div>
+          <div className="mt-12 border-l-2 border-sky-600 pl-6 py-1">
+            <p className="text-lg md:text-xl text-slate-100 font-medium leading-snug">
+              {t.principle}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+9. components/Vessel.tsx  (NEW FILE)
+================================================================================
+Full-width image placeholder (16:7 aspect ratio) with tactical crosshair
+and coordinate overlay. Below the image: headline + description left,
+spec table right.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function Vessel() {
+  const { lang } = useLang();
+  const t = content[lang].vessel;
+
+  return (
+    <section id="vessel" className="bg-slate-900 border-t border-slate-800 py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center gap-4 mb-14">
+          <span className="text-xs font-mono text-slate-700">{t.number}</span>
+          <div className="w-8 h-px bg-slate-800" />
+          <span className="text-xs tracking-widest uppercase text-sky-500 font-medium">
+            {t.label}
+          </span>
+        </div>
+
+        {/* Image placeholder */}
+        <div className="w-full aspect-[16/7] bg-slate-950 border border-slate-800 relative overflow-hidden mb-12">
+          <div className="absolute inset-0 opacity-[0.04]" style={{
+            backgroundImage:
+              "linear-gradient(to right, #94a3b8 1px, transparent 1px), " +
+              "linear-gradient(to bottom, #94a3b8 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950/70" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-10 h-10">
+              <div className="absolute top-1/2 left-0 right-0 h-px bg-slate-700 -translate-y-1/2" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-700 -translate-x-1/2" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 border border-slate-700" />
+            </div>
+          </div>
+          <div className="absolute bottom-4 left-5">
+            <p className="text-xs font-mono text-slate-700 tracking-widest uppercase">
+              {lang === "en" ? "Image Placeholder" : "画像プレースホルダー"}
+            </p>
+          </div>
+          <div className="absolute top-4 right-5">
+            <p className="text-xs font-mono text-slate-800 tracking-wider">
+              35.6762° N · 139.6503° E
+            </p>
+          </div>
+        </div>
+
+        {/* Content row */}
+        <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-start">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight mb-5">
+              {t.headline}
+            </h2>
+            <p className="text-sm text-slate-400 leading-loose">{t.body}</p>
+          </div>
+          <div className="border border-slate-800 divide-y divide-slate-800">
+            {t.specs.map((spec) => (
+              <div key={spec.label} className="flex items-center justify-between px-5 py-4">
+                <span className="text-xs tracking-wide text-slate-500 uppercase">
+                  {spec.label}
+                </span>
+                <span className="text-sm font-medium text-slate-200 font-mono">
+                  {spec.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+10. components/About.tsx  (REPLACE EXISTING)
+================================================================================
+Two-column layout. Left: narrative copy + compliance badges.
+Right: three core values with icon markers and dividers between each.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function About() {
+  const { lang } = useLang();
+  const t = content[lang].about;
+
+  return (
+    <section id="about" className="bg-slate-950 border-t border-slate-800 py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center gap-4 mb-14">
+          <span className="text-xs font-mono text-slate-700">{t.number}</span>
+          <div className="w-8 h-px bg-slate-800" />
+          <span className="text-xs tracking-widest uppercase text-sky-500 font-medium">
+            {t.label}
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-slate-100 leading-tight mb-8">
+              {t.headlineA}<br />
+              <span className="font-semibold text-white">{t.headlineB}</span>
+            </h2>
+            <p className="text-sm text-slate-400 leading-loose mb-5">{t.body1}</p>
+            <p className="text-sm text-slate-400 leading-loose mb-10">{t.body2}</p>
+            <div className="flex flex-wrap gap-2">
+              {t.badges.map((badge) => (
+                <span key={badge}
+                  className="text-xs tracking-wide px-3 py-1.5 border border-slate-800 text-slate-500 font-medium">
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            {t.values.map((value, i) => (
+              <div key={value.title}>
+                <div className="flex gap-5 py-8">
+                  <div className="flex-shrink-0 mt-0.5 w-5 h-5 border border-sky-800 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-sky-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-100 mb-2">{value.title}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">{value.body}</p>
+                  </div>
+                </div>
+                {i < t.values.length - 1 && <div className="border-t border-slate-800" />}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+11. components/JoinTeam.tsx  (NEW FILE)
+================================================================================
+The entire section is a bordered box on a slightly lighter background.
+Left: headline + body. Right: CTA button + email link.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function JoinTeam() {
+  const { lang } = useLang();
+  const t = content[lang].join;
+
+  return (
+    <section id="join" className="bg-slate-950 border-t border-slate-800 py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="border border-slate-800 bg-slate-900 px-8 py-14 md:px-16 md:py-20">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="text-xs font-mono text-slate-700">{t.number}</span>
+            <div className="w-8 h-px bg-slate-800" />
+            <span className="text-xs tracking-widest uppercase text-sky-500 font-medium">
+              {t.label}
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-end">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-6">
+                {t.headline}
+              </h2>
+              <p className="text-sm text-slate-400 leading-loose">{t.sub}</p>
+            </div>
+            <div className="flex flex-col gap-4 md:items-start">
+              <a href="#"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white text-xs tracking-widest uppercase font-semibold transition-colors duration-150 w-full md:w-auto">
+                {t.cta}
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href={`mailto:${t.email}`}
+                className="text-xs font-mono text-slate-500 hover:text-slate-300 transition-colors duration-150 tracking-wide">
+                {t.email}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+12. components/Footer.tsx  (REPLACE EXISTING)
+================================================================================
+Brand column, three link columns (Company / Capabilities / Legal),
+and a bottom bar with copyright and legal notice.
+Copyright year is generated dynamically at runtime.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+import { content } from "@/lib/content";
+
+export default function Footer() {
+  const { lang } = useLang();
+  const t = content[lang].footer;
+
+  return (
+    <footer className="bg-slate-950 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto px-6 py-14">
+        <div className="grid md:grid-cols-4 gap-10 mb-12">
+          <div className="md:col-span-1">
+            <a href="#" className="flex items-center gap-2.5 mb-4">
+              <div className="w-6 h-6 border-2 border-sky-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-2 h-2 bg-sky-600" />
+              </div>
+              <span className="text-xs font-semibold tracking-widest uppercase text-slate-300">
+                Bulwark Dynamics
+              </span>
+            </a>
+            <p className="text-xs text-slate-600 leading-relaxed">{t.tagline}</p>
+          </div>
+
+          {t.columns.map((col) => (
+            <div key={col.heading}>
+              <h4 className="text-xs font-semibold tracking-widest uppercase text-slate-600 mb-4">
+                {col.heading}
+              </h4>
+              <ul className="space-y-2.5">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <a href={link.href}
+                      className="text-xs text-slate-500 hover:text-slate-300 transition-colors duration-150">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+          <p className="text-xs text-slate-700">
+            &copy; {new Date().getFullYear()} Bulwark Dynamics LLC.{" "}
+            {lang === "en" ? "All rights reserved." : "全著作権所有。"}
+          </p>
+          <p className="text-xs text-slate-700 max-w-sm md:text-right">{t.legal}</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+================================================================================
+13. components/LangToggle.tsx  (NEW FILE)
+================================================================================
+Standalone EN/JA language toggle. Renders as a centered button group
+at the very bottom of the page, after the Footer.
+Does not appear in the Header — the Header has its own inline toggle.
+--------------------------------------------------------------------------------
+
+"use client";
+
+import { useLang } from "@/components/LanguageProvider";
+
+export default function LangToggle() {
+  const { lang, setLang } = useLang();
+
+  return (
+    <div className="bg-slate-950 border-t border-slate-800 py-10">
+      <div className="max-w-7xl mx-auto px-6 flex justify-center">
+        <div className="flex items-center border border-slate-800">
+          <button
+            onClick={() => setLang("en")}
+            className={`px-5 py-2.5 text-xs tracking-widest font-medium transition-colors duration-150 ${
+              lang === "en"
+                ? "bg-slate-800 text-slate-100"
+                : "text-slate-500 hover:text-slate-300"
+            }`}
+          >
+            EN
+          </button>
+          <div className="w-px h-4 bg-slate-800" />
+          <button
+            onClick={() => setLang("ja")}
+            className={`px-5 py-2.5 text-xs tracking-widest font-medium transition-colors duration-150 ${
+              lang === "ja"
+                ? "bg-slate-800 text-slate-100"
+                : "text-slate-500 hover:text-slate-300"
+            }`}
+          >
+            JA
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+================================================================================
+14. HOW IT ALL CONNECTS
+================================================================================
+
+  app/layout.tsx
+    └── <LanguageProvider>           holds lang state ("en" | "ja")
+          └── app/page.tsx
+                ├── <Header />       fixed top bar; reads + sets lang inline
+                ├── <Hero />         reads lang
+                ├── <Mission />      reads lang
+                ├── <Vessel />       reads lang
+                ├── <About />        reads lang
+                ├── <JoinTeam />     reads lang
+                ├── <Footer />       reads lang
+                └── <LangToggle />   reads + sets lang; page bottom
+
+Clicking EN or JA anywhere re-renders every section simultaneously.
+No page reload. No routing. No props drilling.
+
+To edit any copy:     update lib/content.ts only.
+To reorder sections:  update app/page.tsx only.
+To add a language:    add a new key to content and add it to the Lang type.
+
+
+================================================================================
+15. RUNNING THE PROJECT
+================================================================================
+
+  Install dependencies (first time only):
+    npm install
+
+  Start the development server:
+    npm run dev
+
+  Open in browser:
+    http://localhost:3000
+
+  Build for production:
+    npm run build
+
+  Serve the production build:
+    npm start
+
+================================================================================
+END OF APPENDIX
+================================================================================
