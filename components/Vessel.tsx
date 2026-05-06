@@ -161,7 +161,7 @@ export default function Vessel() {
           <div className="animate-fade-in-up animate-delay-250 mt-4 mb-8">
             <img
               src="/Image (CARAVEL Logo White).svg"
-              alt="CARAVEL"
+              alt="Carabao"
               className="h-auto max-w-full"
               style={{ width: "min(560px, 100%)" }}
             />
@@ -308,8 +308,8 @@ export default function Vessel() {
         </div>
       </div>
 
-      {/* ── CARAVEL specs image layout ── */}
-      <section id="caravel" className="bg-[#EBEBEB] overflow-hidden flex items-center" style={{ minHeight: "100vh" }}>
+      {/* ── Carabao specs image layout ── */}
+      <section id="carabao" className="bg-[#EBEBEB] overflow-hidden flex items-center" style={{ minHeight: "100vh" }}>
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-24 w-full py-16 sm:py-20" style={{ marginTop: "-40px" }}>
 
           {/* Top specs — right aligned */}
@@ -323,10 +323,10 @@ export default function Vessel() {
             </div>
           </FadeIn>
 
-          {/* CARAVEL logo + technical image + shore to shore labels all overlapping */}
+          {/* Carabao logo + technical image + shore to shore labels all overlapping */}
           <SlideInTechnical>
             <div className="relative w-full mb-6" style={{ aspectRatio: "1230 / 642.578125" }}>
-              {/* CARAVEL logo watermark */}
+              {/* Carabao logo watermark */}
               <img
                 src="/Image (CARAVEL Logo).svg"
                 alt=""
@@ -340,7 +340,7 @@ export default function Vessel() {
               {/* Technical drawing — shifted 30px right */}
               <img
                 src="/Image (CARAVEL Technical).svg"
-                alt="CARAVEL vessel"
+                alt="Carabao vessel"
                 className="absolute z-10"
                 style={{
                   width: "82.5%",

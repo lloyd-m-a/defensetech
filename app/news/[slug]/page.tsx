@@ -17,7 +17,7 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
   return {
-    title: `${article.title} | Bulwark Dynamics`,
+    title: `${article.title} | DefenseTech`,
     description: article.excerpt,
   };
 }

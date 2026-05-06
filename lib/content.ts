@@ -141,7 +141,7 @@ export const content = {
       },
       solution: {
         eyebrow: "The Solution",
-        heading: "CARAVEL: Built for\ncontested waters",
+        heading: "Carabao: Built for\ncontested waters",
         items: [
           "Autonomous shore-to-shore delivery",
           "Low signature, hard to target",
@@ -151,7 +151,7 @@ export const content = {
         cta: "Learn More",
       },
       cards: [
-        { label: "Our Vessel",   sub: "Explore CARAVEL →" },
+        { label: "Our Vessel",   sub: "Explore Carabao →" },
         { label: "Work With Us", sub: "View Openings →"   },
       ],
     },
@@ -160,12 +160,12 @@ export const content = {
     vessel: {
       number: "02",
       label: "Autonomous Vessel",
-      headline: "CARAVEL",
+      headline: "Carabao",
       body: "Autonomous Beach-Landing Resupply Vessel",
       overview: {
         eyebrow: "Overview",
         heading: "Built for the most\nchallenging environments",
-        body1: "CARAVEL is an autonomous resupply vessel engineered for contested maritime operations. Capable of independent beach-landing delivery, it sustains forward-deployed forces without exposing personnel to front-line risk.",
+        body1: "Carabao is an autonomous resupply vessel engineered for contested maritime operations. Capable of independent beach-landing delivery, it sustains forward-deployed forces without exposing personnel to front-line risk.",
         body2: "We are an ambitious team of experienced engineers and manufacturers dedicated to developing advanced technology that will revolutionize what's possible in naval logistics and contested environment operations.",
       },
       featuresIntro: {
@@ -176,7 +176,7 @@ export const content = {
       features: [
         {
           title: "Shore to shore delivery",
-          body: "CARAVEL delivers cargo directly from ship to shore, bypassing port infrastructure and enabling sustained direct beach operations in any coastal environment.",
+          body: "Carabao delivers cargo directly from ship to shore, bypassing port infrastructure and enabling sustained direct beach operations in any coastal environment.",
         },
         {
           title: "Support versatile\nenvironments",
@@ -192,7 +192,7 @@ export const content = {
         },
         {
           title: "Port-independent\ncargo handling",
-          body: "CARAVEL beaches, discharges, and redeploys autonomously. No port infrastructure, no shore crew, no delay.",
+          body: "Carabao beaches, discharges, and redeploys autonomously. No port infrastructure, no shore crew, no delay.",
         },
       ],
       caravelSpecs: {
@@ -266,7 +266,7 @@ export const content = {
       headline: "Build systems for tomorrow's threats",
       sub: "Join a team of exceptional engineers, operators, and strategists who are redefining what's possible in defense technology.",
       cta: "View Open Positions",
-      email: "careers@example.com",
+      email: "lloydmatias.arbiol@gmail.com",
       whyJoin: {
         eyebrow: "Why Join",
         heading: "Shape the future\nof defense",

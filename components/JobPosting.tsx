@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useInView } from "@/hooks/useInView";
 import { jobs, type Job } from "@/lib/jobs";
@@ -297,17 +296,15 @@ export default function JobPosting({ job }: { job: Job }) {
           <div className="max-w-[860px] mx-auto px-5 sm:px-8 text-center">
             <h2 className="font-bold text-white mb-5" style={{ fontSize: "clamp(28px,4vw,40px)", lineHeight: "1.2" }}>Ready to build what matters?</h2>
             <p className="mb-10 mx-auto" style={{ fontSize: "18px", lineHeight: "1.65", color: "rgba(255,255,255,0.6)", maxWidth: "520px" }}>
-              Fill out our application form to apply for our open roles at Bulwark Dynamics.
+              Send your resume and a brief introduction to apply for this role.
             </p>
-            {/* Fillout embed */}
-            <div
-              style={{ width: "100%", height: "500px" }}
-              data-fillout-id="fwt8DdrqGUus"
-              data-fillout-embed-type="standard"
-              data-fillout-inherit-parameters
-              data-fillout-dynamic-resize
-            />
-            <Script src="https://server.fillout.com/embed/v1/" strategy="lazyOnload" />
+            <a
+              href="mailto:lloydmatias.arbiol@gmail.com"
+              className="inline-flex items-center gap-2 bg-white text-black px-8 py-3.5 text-xs font-semibold tracking-widest uppercase transition-opacity duration-200 hover:opacity-80"
+            >
+              Apply via Email
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </a>
             <div className="mt-10">
               <Link href="/join#open-roles" className="inline-flex items-center gap-2 text-sm tracking-widest uppercase transition-opacity duration-200 hover:opacity-60" style={{ color: "rgba(255,255,255,0.5)" }}>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>

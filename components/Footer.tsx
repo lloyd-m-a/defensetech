@@ -81,8 +81,8 @@ export default function Footer() {
             <p className={headingClass}>{tn.contact}</p>
             <ul className="flex flex-wrap gap-x-4 gap-y-1 sm:flex-col sm:flex-nowrap sm:gap-0 sm:space-y-[6px]">
               <li>
-                <a href="mailto:contact@example.com" className={linkClass + " break-all"}>
-                  contact@example.com
+                <a href="mailto:lloydmatias.arbiol@gmail.com" className={linkClass + " break-all"}>
+                  lloydmatias.arbiol@gmail.com
                 </a>
               </li>
             </ul>

@@ -209,7 +209,7 @@ export default function Hero() {
                 {t.platform.eyebrow}
               </p>
               <div style={{ width: "64px", height: "2px", background: "#000000", marginTop: "16px", marginBottom: "32px" }} />
-              <img src="/Image (CARAVEL Logo).svg" alt="CARAVEL" className="h-8 w-auto mb-6 object-left" />
+              <img src="/Image (CARAVEL Logo).svg" alt="Carabao" className="h-8 w-auto mb-6 object-left" />
               <h3 className="font-bold text-slate-900 leading-tight mb-5 whitespace-pre-line text-[26px] sm:text-[30px] lg:text-[34px]">
                 {t.platform.heading}
               </h3>
@@ -220,7 +220,7 @@ export default function Hero() {
             </FadeIn>
             <FadeIn delay={150}>
               <div className="w-full aspect-[4/3] relative overflow-hidden">
-                <img src="/Image (CARAVEL 35).webp" alt="CARAVEL vessel" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                <img src="/Image (CARAVEL 35).webp" alt="Carabao vessel" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
               </div>
             </FadeIn>
           </div>

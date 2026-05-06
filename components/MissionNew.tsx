@@ -197,7 +197,7 @@ export default function MissionNew() {
               </span>
             </h1>
             <p className="animate-fade-in-up animate-delay-450 text-[18px] sm:text-[20px] lg:text-[24px] font-normal leading-[1.625] text-white/75 max-w-[700px]">
-              Bulwark Dynamics is building the world's first vertically integrated autonomous maritime logistics company — manufacturing hundreds of vessels, designed for the contested shores of the Western Pacific.
+              Building the world's first vertically integrated autonomous maritime logistics company — manufacturing hundreds of vessels, designed for the contested shores of the Western Pacific.
             </p>
           </div>
         </div>
@@ -568,7 +568,7 @@ export default function MissionNew() {
       <section className="bg-black py-16 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-16 xl:px-24">
         <div className="flex flex-col sm:flex-row w-full gap-2 sm:gap-0" style={{ minHeight: "clamp(320px, 50vw, 600px)" }}>
           {[
-            { label: "Our Vessel", sub: "CARAVEL — autonomous beach-landing logistics platform", href: "/vessel", image: "/Image (Our Vessel).svg" },
+            { label: "Our Vessel", sub: "Carabao — autonomous beach-landing logistics platform", href: "/vessel", image: "/Image (Our Vessel).svg" },
             { label: "Work With Us", sub: "Join the team building the future of maritime logistics", href: "/join#why-join", image: "/Image (Work With Us).svg" },
           ].map((card) => (
             <a key={card.label} href={card.href} className="group relative block overflow-hidden flex-1" style={{ minHeight: "280px" }}>

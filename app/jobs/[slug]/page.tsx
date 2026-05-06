@@ -16,10 +16,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const job = getJobBySlug(slug);
-  if (!job) return { title: "Role Not Found | Bulwark Dynamics" };
+  if (!job) return { title: "Role Not Found | DefenseTech" };
 
   return {
-    title: `${job.title} | Bulwark Dynamics Careers`,
+    title: `${job.title} | DefenseTech Careers`,
     description: job.overview,
   };
 }
