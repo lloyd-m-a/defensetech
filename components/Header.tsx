@@ -45,7 +45,7 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="flex items-center flex-shrink-0">
-            <img src="/logo.svg" alt="Bulwark Dynamics" className="h-6 w-auto" />
+            <span className="text-white text-lg font-semibold tracking-[2px] uppercase">DefenseTech</span>
           </a>
 
           {/* Desktop nav */}

@@ -5,14 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
-  title: "Bulwark Dynamics | Defense Technology",
+  title: "DefenseTech | Portfolio",
   description:
     "Advanced defense technology solutions for the modern threat environment. Reliable systems. Trusted partners.",
-  icons: {
-    icon: "/Image (Bulwark Icon).avif",
-    shortcut: "/Image (Bulwark Icon).avif",
-    apple: "/Image (Bulwark Icon).avif",
-  },
 };
 
 export default function RootLayout({

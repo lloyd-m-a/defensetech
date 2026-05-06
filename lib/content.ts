@@ -19,7 +19,7 @@ export const content = {
       capabilities: {
         eyebrow: "Mission",
         heading: "Real capabilities, not prototypes",
-        body1: "Bulwark Dynamics is a DefenseTech company committed to building and delivering real capabilities to truly help and protect warfighters.",
+        body1: "A DefenseTech company committed to building and delivering real capabilities to truly help and protect warfighters.",
         body2: "Logistics win wars. Yet logistics are often overlooked. The United States and its allies are facing challenges of maintaining resilient supply lines across the vast Pacific, into contested and denied areas.",
         body3: "We must have the capabilities to sustain those who fight, to deter those who threaten, to defend freedom, and to secure our future. That's what we do.",
         cta: "Learn More",
@@ -54,7 +54,7 @@ export const content = {
         eyebrow: "Latest Updates",
         heading: "Newsroom",
         articles: [
-          { date: "January 2026",   tag: "Company",     title: "Bulwark Dynamics opens prototype production facility", excerpt: "New facility in Menlo Park enables rapid iteration and testing of autonomous systems."                       },
+          { date: "January 2026",   tag: "Company",     title: "Company opens prototype production facility", excerpt: "New facility in Menlo Park enables rapid iteration and testing of autonomous systems."                       },
           { date: "December 2025",  tag: "Partnership", title: "Strategic MOU with Japanese shipbuilder",              excerpt: "Partnership with top-tier shipbuilder to explore co-production of autonomous maritime systems."             },
           { date: "September 2025", tag: "Funding",     title: "Pre-seed round closed",                                excerpt: "Funding secured to accelerate initial prototype development and field testing."                           },
         ],
@@ -228,7 +228,7 @@ export const content = {
       badges: ["ITAR Compliant", "NIST 800-171", "CMMC Level 2", "FedRAMP Ready"],
       missionStatement: {
         eyebrow: "Mission",
-        body1: "Bulwark Dynamics is a DefenseTech company committed to building and delivering real capabilities to truly help and protect warfighters.",
+        body1: "A DefenseTech company committed to building and delivering real capabilities to truly help and protect warfighters.",
         body2: "We are an ambitious team of experienced engineers and manufacturers dedicated to developing advanced technology that will revolutionize what's possible in naval logistics and contested environment operations.",
       },
       founded: {
@@ -266,11 +266,11 @@ export const content = {
       headline: "Build systems for tomorrow's threats",
       sub: "Join a team of exceptional engineers, operators, and strategists who are redefining what's possible in defense technology.",
       cta: "View Open Positions",
-      email: "careers@bulwarkdynamics.com",
+      email: "careers@example.com",
       whyJoin: {
         eyebrow: "Why Join",
         heading: "Shape the future\nof defense",
-        body1: "At Bulwark Dynamics, you won't just build prototypes — you'll deliver real capabilities that protect warfighters and shape the future of national security.",
+        body1: "You won't just build prototypes — you'll deliver real capabilities that protect warfighters and shape the future of national security.",
         body2: "We're a team of operators, engineers, and strategists with backgrounds in defense, aerospace, and autonomous systems. We move fast, ship real products, and measure our impact in lives protected.",
         pillars: [
           { title: "Real Impact",      body: "Build technology that matters. Your work directly supports warfighter safety and mission success."          },

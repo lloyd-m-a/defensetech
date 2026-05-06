@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="flex flex-wrap gap-x-4 gap-y-1 sm:flex-col sm:flex-nowrap sm:gap-0 sm:space-y-[6px]">
               <li>
                 <a
-                  href="https://www.linkedin.com/company/bulwark-dynamics"
+                  href="https://www.linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={linkClass + " inline-flex items-center gap-1.5"}
@@ -81,8 +81,8 @@ export default function Footer() {
             <p className={headingClass}>{tn.contact}</p>
             <ul className="flex flex-wrap gap-x-4 gap-y-1 sm:flex-col sm:flex-nowrap sm:gap-0 sm:space-y-[6px]">
               <li>
-                <a href="mailto:contact@bulwarkdynamics.com" className={linkClass + " break-all"}>
-                  contact@bulwarkdynamics.com
+                <a href="mailto:contact@example.com" className={linkClass + " break-all"}>
+                  contact@example.com
                 </a>
               </li>
             </ul>
@@ -99,7 +99,7 @@ export default function Footer() {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <img src="/logo.svg" alt="Bulwark Dynamics" className="w-full h-auto object-left" />
+          <span className="text-white text-4xl lg:text-6xl font-semibold tracking-[4px] uppercase py-4">DefenseTech</span>
           <div className="h-4 lg:h-8" />
           <span className="block w-full h-px bg-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
         </a>
@@ -112,7 +112,7 @@ export default function Footer() {
         {/* ── COPYRIGHT ── */}
         <div className="pb-6 lg:pb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
           <p className="text-sm text-white/40">
-            © {new Date().getFullYear()} Bulwark Dynamics. {tf.allRights}
+            © {new Date().getFullYear()} DefenseTech. {tf.allRights}
           </p>
           <p className="text-sm text-white/40">
             {tf.location}
