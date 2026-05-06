@@ -159,12 +159,7 @@ export default function Vessel() {
             {t.label}
           </p>
           <div className="animate-fade-in-up animate-delay-250 mt-4 mb-8">
-            <img
-              src="/Image (CARAVEL Logo White).svg"
-              alt="Carabao"
-              className="h-auto max-w-full"
-              style={{ width: "min(560px, 100%)" }}
-            />
+            <span className="block text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[6px] uppercase text-white">Carabao</span>
           </div>
           <p
             className="animate-fade-in-up animate-delay-450"
@@ -326,17 +321,17 @@ export default function Vessel() {
           {/* Carabao logo + technical image + shore to shore labels all overlapping */}
           <SlideInTechnical>
             <div className="relative w-full mb-6" style={{ aspectRatio: "1230 / 642.578125" }}>
-              {/* Carabao logo watermark */}
-              <img
-                src="/Image (CARAVEL Logo).svg"
-                alt=""
+              {/* Carabao text watermark */}
+              <span
                 aria-hidden="true"
-                className="absolute left-0 w-full"
+                className="absolute left-0 w-full text-center font-bold tracking-[8px] uppercase select-none pointer-events-none"
                 style={{
-                  top:    `max(2%, calc(${(130.97 / 642.578125) * 100}% - 14%))`,
-                  height: `${(105.27627563476562 / 642.578125) * 100}%`,
+                  top: `max(2%, calc(${(130.97 / 642.578125) * 100}% - 14%))`,
+                  fontSize: `${(105.27627563476562 / 642.578125) * 100}%`,
+                  color: "rgba(0,0,0,0.08)",
+                  letterSpacing: "0.3em",
                 }}
-              />
+              >Carabao</span>
               {/* Technical drawing — shifted 30px right */}
               <img
                 src="/Image (CARAVEL Technical).svg"

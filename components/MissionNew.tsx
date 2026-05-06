@@ -113,7 +113,7 @@ const DOCTRINE = [
   },
   {
     num: "02",
-    title: "Bulwark's\nInsight",
+    title: "Our\nInsight",
     lead: "The U.S. has solved this problem before.",
     body: "During the Korean and Vietnam Wars, the U.S. relied on allied industrial bases — especially Japan — to build wartime logistics platforms at speed and scale.\n\nHistory is repeating itself.",
   },
@@ -470,7 +470,7 @@ export default function MissionNew() {
             <FadeIn delay={150}>
               <div className="bg-black h-full flex flex-col justify-between" style={{ padding: "clamp(32px, 5vw, 64px)" }}>
                 <div>
-                  <p className="text-xs font-semibold tracking-[3px] uppercase text-slate-500 mb-4">The Bulwark Answer</p>
+                  <p className="text-xs font-semibold tracking-[3px] uppercase text-slate-500 mb-4">The Answer</p>
                   <div style={{ width: "48px", height: "2px", background: "#FFFFFF", marginBottom: "32px" }} />
                   <h4 className="mb-10" style={{ fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 700, lineHeight: 1.2, color: "#FFFFFF" }}>
                     Vertically integrated. Industrially scaled. Allied-built.

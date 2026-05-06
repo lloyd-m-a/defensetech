@@ -209,7 +209,7 @@ export default function Hero() {
                 {t.platform.eyebrow}
               </p>
               <div style={{ width: "64px", height: "2px", background: "#000000", marginTop: "16px", marginBottom: "32px" }} />
-              <img src="/Image (CARAVEL Logo).svg" alt="Carabao" className="h-8 w-auto mb-6 object-left" />
+              <span className="block text-2xl font-bold tracking-[4px] uppercase text-slate-900 mb-6">Carabao</span>
               <h3 className="font-bold text-slate-900 leading-tight mb-5 whitespace-pre-line text-[26px] sm:text-[30px] lg:text-[34px]">
                 {t.platform.heading}
               </h3>
