@@ -39,11 +39,11 @@ function SlideInTechnical({ children }: { children: React.ReactNode }) {
 }
 
 const FEATURE_IMAGES = [
-  "/Image (Shore to shore delivery).webp",
-  "/Image (Support versatile environments).webp",
+  "https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?auto=format&fit=crop&w=1920&q=80", // Shore to shore delivery
+  "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1920&q=80",   // Support versatile environments
   "/Image (ISO containers supported).svg",
   "/Image (GPS denied operability).svg",
-  "/Image (Port-independent cargo handling).svg",
+  "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1920&q=80", // Port-independent cargo handling
 ];
 
 // Rolodex starts at 12% scroll — "Features" bg shows briefly then cards begin.
@@ -138,10 +138,11 @@ export default function Vessel() {
         className="relative min-h-screen flex flex-col overflow-hidden bg-slate-950"
       >
         <img
-          src="/vessel_page.svg"
+          src="/about_us_page.webp"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.55 }}
         />
         <ScrollIndicator />
         <div

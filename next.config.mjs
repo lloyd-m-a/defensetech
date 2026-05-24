@@ -28,7 +28,7 @@ const nextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://player.vimeo.com https://f.vimeocdn.com https://server.fillout.com https://vercel.live",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://i.vimeocdn.com https://f.vimeocdn.com",
+              "img-src 'self' data: blob: https://i.vimeocdn.com https://f.vimeocdn.com https://images.unsplash.com",
               "frame-src https://player.vimeo.com https://*.fillout.com",
               "connect-src 'self' https://player.vimeo.com https://f.vimeocdn.com https://api.vimeo.com https://fresnel.vimeocdn.com https://vimeo.com https://*.fillout.com",
               "media-src 'self' blob: https://f.vimeocdn.com https://4d3wdlklqcdgstyo.public.blob.vercel-storage.com",
