@@ -151,12 +151,6 @@ export default function MissionNew() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollOpacity, setScrollOpacity] = useState(1);
 
-  // Vimeo background video — mission: 1185630821
-  const [videoReady, setVideoReady] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setVideoReady(true), 1500);
-    return () => clearTimeout(t);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -360,11 +354,11 @@ export default function MissionNew() {
       {/* ── THE ABLV PLATFORM ─────────────────────────────────────────── */}
       <section className="relative py-20 sm:py-28 lg:py-36 overflow-hidden" style={{ background: "linear-gradient(180deg, #0C1D2E 0%, #080305 60%, #040000 100%)" }}>
 
-        {/* ── VIDEO BACKGROUND — Vimeo ── */}
+        {/* ── GENERIC WAR VESSEL BACKGROUND ── */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute overflow-hidden pointer-events-none" style={{ top: 0, left: 0, right: 0, bottom: "-150px" }} aria-hidden="true">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <img
-              src="/poster-mission.webp"
+              src="/main_page.webp"
               alt=""
               loading="lazy"
               style={{
@@ -375,25 +369,8 @@ export default function MissionNew() {
                 width: "max(100%, calc(100vh * 16 / 9))",
                 height: "max(100%, calc(100vw * 9 / 16))",
                 objectFit: "cover",
+                opacity: 0.4,
               }}
-            />
-            <iframe
-              src="https://player.vimeo.com/video/1185630821?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1&app_id=58479"
-              loading="lazy"
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "max(100%, calc(100vh * 16 / 9))",
-                height: "max(100%, calc(100vw * 9 / 16))",
-                border: "none",
-                pointerEvents: "none",
-                opacity: videoReady ? 1 : 0,
-                transition: "opacity 1.5s ease",
-              }}
-              allow="autoplay; fullscreen; picture-in-picture"
-              title="Mission background video"
             />
           </div>
           <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />

@@ -2,11 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { content } from "@/lib/content";
+import { jobs } from "@/lib/jobs";
 
 export default function Header() {
   const t = content.en.nav;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [ctaHovered, setCtaHovered] = useState(false);
+  const openRoleCount = jobs.length;
+  const ctaDefault = `${openRoleCount} Open Role${openRoleCount !== 1 ? "s" : ""}`;
+  const ctaHover = t.cta;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -58,8 +63,10 @@ export default function Header() {
             <a
               href="/join"
               className="h-[45px] px-8 flex items-center justify-center uppercase tracking-[0.8px] text-base font-medium border border-white bg-transparent text-white hover:bg-white hover:text-black transition-colors duration-300"
+              onMouseEnter={() => setCtaHovered(true)}
+              onMouseLeave={() => setCtaHovered(false)}
             >
-              {t.cta}
+              <span className="transition-all duration-200">{ctaHovered ? ctaHover : ctaDefault}</span>
             </a>
 
           </div>
@@ -95,7 +102,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className="self-start h-[45px] px-8 flex items-center justify-center uppercase tracking-[0.8px] text-base font-medium border border-white bg-transparent text-white hover:bg-white hover:text-black transition-colors duration-300"
             >
-              {t.cta}
+              {ctaDefault}
             </a>
 
           </div>
