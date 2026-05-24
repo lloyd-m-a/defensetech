@@ -220,7 +220,7 @@ export default function Hero() {
             </FadeIn>
             <FadeIn delay={150}>
               <div className="w-full aspect-[4/3] relative overflow-hidden">
-                <img src="/Image (CARAVEL 35).webp" alt="Carabao vessel" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                <img src="/main_page.webp" alt="Naval vessel at sea" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
               </div>
             </FadeIn>
           </div>
@@ -229,10 +229,10 @@ export default function Hero() {
 
       {/* ── DISTRIBUTED MARITIME ── */}
       <section className="relative min-h-[60vh] sm:min-h-screen overflow-hidden bg-slate-900 flex flex-col justify-end">
-        {/* Vimeo background — Cal15x */}
-        <div className="absolute overflow-hidden pointer-events-none" style={{ top: 0, left: 0, right: 0, bottom: "-150px" }} aria-hidden="true">
+        {/* Generic vessel background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <img
-            src="/poster-cal15x.webp"
+            src="/about_us_page.webp"
             alt=""
             loading="lazy"
             style={{
@@ -243,25 +243,8 @@ export default function Hero() {
               width: "max(100%, calc(100vh * 16 / 9))",
               height: "max(100%, calc(100vw * 9 / 16))",
               objectFit: "cover",
+              opacity: 0.6,
             }}
-          />
-          <iframe
-            src="https://player.vimeo.com/video/1185630890?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1&app_id=58479"
-            loading="lazy"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "max(100%, calc(100vh * 16 / 9))",
-              height: "max(100%, calc(100vw * 9 / 16))",
-              border: "none",
-              pointerEvents: "none",
-              opacity: videoReady ? 1 : 0,
-              transition: "opacity 1.5s ease",
-            }}
-            allow="autoplay; fullscreen; picture-in-picture"
-            title="Cal15x background video"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />

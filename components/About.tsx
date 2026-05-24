@@ -26,12 +26,6 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollOpacity, setScrollOpacity] = useState(1);
 
-  // Vimeo background video — about: 1185630782
-  const [videoReady, setVideoReady] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setVideoReady(true), 1500);
-    return () => clearTimeout(t);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +47,10 @@ export default function About() {
         id="about"
         className="relative min-h-screen flex flex-col overflow-hidden bg-black"
       >
-        {/* Vimeo background — About */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ opacity: 0.7 }} aria-hidden="true">
+        {/* Generic war vessel background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ opacity: 0.65 }} aria-hidden="true">
           <img
-            src="/poster-about.webp"
+            src="/about_us_page.webp"
             alt=""
             fetchPriority="high"
             style={{
@@ -68,23 +62,6 @@ export default function About() {
               height: "max(100%, calc(100vw * 9 / 16))",
               objectFit: "cover",
             }}
-          />
-          <iframe
-            src="https://player.vimeo.com/video/1185630782?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1&app_id=58479"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "max(100%, calc(100vh * 16 / 9))",
-              height: "max(100%, calc(100vw * 9 / 16))",
-              border: "none",
-              pointerEvents: "none",
-              opacity: videoReady ? 1 : 0,
-              transition: "opacity 1.5s ease",
-            }}
-            allow="autoplay; fullscreen; picture-in-picture"
-            title="About background video"
           />
         </div>
         <ScrollIndicator />

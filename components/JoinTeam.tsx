@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { content } from "@/lib/content";
 import { useInView } from "@/hooks/useInView";
 import ScrollIndicator from "@/components/ScrollIndicator";
-import { jobs } from "@/lib/jobs";
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.15);
@@ -113,88 +111,9 @@ export default function JoinTeam() {
         </div>
       </section>
 
-      {/* ── OPEN ROLES ── */}
-      <section id="open-roles" className="bg-[#F8F8F8] py-16 sm:py-24 lg:py-32">
+      {/* ── CONTACT CTA ── */}
+      <section className="bg-[#F8F8F8] py-16 sm:py-24 lg:py-32">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-24">
-          <FadeIn>
-            <p className="uppercase mb-0" style={{ fontSize: "14px", fontWeight: 500, lineHeight: "21px", letterSpacing: "2.8px", color: "rgba(0,0,0,0.5)" }}>
-              {t.openRoles.eyebrow}
-            </p>
-            <div style={{ width: "64px", height: "2px", background: "#000000", marginTop: "16px", marginBottom: "40px" }} />
-            <div className="flex flex-wrap items-baseline gap-4 sm:gap-6 mb-12 md:mb-16">
-              <h3 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 700, lineHeight: "1.25", letterSpacing: "0px", color: "#000000" }}>
-                {t.openRoles.heading}
-              </h3>
-              <span style={{ fontSize: "clamp(64px, 10vw, 120px)", fontWeight: 700, lineHeight: "1", letterSpacing: "0px", color: "rgba(0,0,0,0.2)" }}>
-                {t.openRoles.roles.length}
-              </span>
-            </div>
-          </FadeIn>
-
-          {/* Role cards */}
-          <div className="flex flex-col gap-3 mb-10">
-            {t.openRoles.roles.map((role, i) => {
-              const jobMatch = jobs.find((j) => j.title === role.title);
-              const jobSlug = jobMatch?.slug;
-              const jobHref = jobSlug ? `/jobs/${jobSlug}` : "/join#open-roles";
-              return (
-                <FadeIn key={role.title} delay={i * 60}>
-                  <div className="group relative bg-white overflow-hidden hover:translate-x-2 transition-transform duration-300">
-                    {/* Full-card link overlay */}
-                    <Link
-                      href={jobHref}
-                      className="absolute inset-0 z-[1]"
-                      aria-label={`View role: ${role.title}`}
-                    />
-                    {/* Left bar — slides in from top on hover */}
-                    <div className="absolute left-0 top-0 h-full w-[3px] bg-black origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out" />
-                    <div
-                      className="flex items-center justify-between gap-4"
-                      style={{ minHeight: "clamp(100px, 15vw, 159px)", paddingLeft: "clamp(16px, 3vw, 36px)", paddingRight: "clamp(16px, 2.5vw, 32px)", paddingTop: "16px", paddingBottom: "16px" }}
-                    >
-                      <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-xs tracking-widest uppercase" style={{ color: "rgba(0,0,0,0.5)" }}>{role.dept}</span>
-                          <span style={{ color: "rgba(0,0,0,0.2)" }}>·</span>
-                          <span className="text-xs tracking-widest uppercase" style={{ color: "rgba(0,0,0,0.5)" }}>{role.type}</span>
-                        </div>
-                        <p
-                          className="transition-colors duration-300 group-hover:text-gray-400"
-                          style={{ fontSize: "clamp(16px, 2.5vw, 24px)", fontWeight: 700, lineHeight: "1.5", letterSpacing: "0px", color: "#000000" }}
-                        >
-                          {role.title}
-                        </p>
-                        <p className="mt-1 text-xs" style={{ color: "rgba(0,0,0,0.4)" }}>{role.location}</p>
-                      </div>
-                      <div className="relative z-[2] flex-shrink-0 flex flex-col items-end gap-2">
-                        {jobSlug && (
-                          <Link
-                            href={jobHref}
-                            className="relative z-[3] flex items-center gap-1 text-xs font-semibold tracking-widest uppercase transition-opacity duration-200 hover:opacity-50"
-                            style={{ color: "#000000" }}
-                          >
-                            View Role
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        )}
-                        <Link
-                          href={jobHref}
-                          className="relative z-[3] flex items-center gap-1 text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-50"
-                          style={{ color: "rgba(0,0,0,0.5)" }}
-                        >
-                          {t.openRoles.apply}
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </FadeIn>
-              );
-            })}
-          </div>
-
-          {/* Open application box */}
           <FadeIn>
             <div className="bg-white p-8 sm:p-10" style={{ borderTop: "2px solid rgba(0,0,0,0.1)" }}>
               <p className="mb-2" style={{ fontSize: "20px", fontWeight: 700, lineHeight: "30px", color: "#000000" }}>
