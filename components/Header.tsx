@@ -9,6 +9,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [ctaHovered, setCtaHovered] = useState(false);
+  const [mobileTapped, setMobileTapped] = useState(false);
   const openRoleCount = jobs.length;
   const ctaDefault = `${openRoleCount} Open Role${openRoleCount !== 1 ? "s" : ""}`;
   const ctaHover = t.cta;
@@ -99,10 +100,20 @@ export default function Header() {
             ))}
             <a
               href="/join"
-              onClick={() => setMenuOpen(false)}
-              className="self-start h-[45px] px-8 flex items-center justify-center uppercase tracking-[0.8px] text-base font-medium border border-white bg-transparent text-white hover:bg-white hover:text-black transition-colors duration-300"
+              onClick={(e) => {
+                if (!mobileTapped) {
+                  e.preventDefault();
+                  setMobileTapped(true);
+                  setTimeout(() => setMobileTapped(false), 2000);
+                } else {
+                  setMenuOpen(false);
+                  setMobileTapped(false);
+                }
+              }}
+              className="self-start h-[45px] px-8 flex items-center justify-center uppercase tracking-[0.8px] text-base font-medium border border-white bg-transparent text-white transition-colors duration-300"
+              style={{ background: mobileTapped ? "#ffffff" : "transparent", color: mobileTapped ? "#000000" : "#ffffff" }}
             >
-              {ctaDefault}
+              {mobileTapped ? ctaHover : ctaDefault}
             </a>
 
           </div>

@@ -333,16 +333,16 @@ export default function Vessel() {
                   letterSpacing: "0.3em",
                 }}
               >Carabao</span>
-              {/* Technical drawing — shifted 30px right */}
+              {/* Warship icon */}
               <img
-                src="/Image (CARAVEL Technical).svg"
+                src="/icon-warship.svg"
                 alt="Carabao vessel"
                 className="absolute z-10"
                 style={{
                   width: "82.5%",
                   left: "calc(8.75% + 30px)",
-                  top: "-10px",
-                  height: "100%",
+                  top: "10%",
+                  height: "80%",
                   objectFit: "contain",
                   filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.25)) drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
                 }}
